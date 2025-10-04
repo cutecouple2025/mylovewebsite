@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Love Website</title>
+  <style>
+    body {
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background-color: #ffe6f0;
+      text-align: center;
+      color: #333;
+    }
+    .hidden { display: none; }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    }
+    h1 { color: #ff4d88; }
+    h2 { color: #ff6699; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin: 5px 0; }
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 15px;
+      background: #ddd;
+      display: inline-block;
+      margin: 10px;
+    }
+    input {
+      padding: 8px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      padding: 8px 15px;
+      background: #ff4d88;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover { background: #ff1a66; }
+  </style>
+</head>
+<body>
+
+<div id="login" class="container">
+  <h1>🔒 Login</h1>
+  <input id="username" placeholder="Username"><br>
+  <input id="password" type="password" placeholder="Password"><br>
+  <button onclick="checkLogin()">Enter</button>
+  <p id="error" style="color:red;"></p>
+</div>
+
+<div id="content" class="container hidden">
+  <h1>💕 Our Love Website 💕</h1>
+
+  <h2>🎂 Birthday Countdown</h2>
+  <p id="countdown"></p>
+
+  <h2>🎬 Movies To Watch</h2>
+  <ul id="toWatch">
+    <!-- Add movies here -->
+  </ul>
+
+  <h2>✅ Movies We Watched</h2>
+  <ul id="watched">
+    <!-- Add movies here -->
+  </ul>
+
+  <h2>📝 Our Bucket List</h2>
+  <ul id="bucket">
+    <!-- Add bucket list items here -->
+  </ul>
+
+  <h2>🎶 Our Playlist</h2>
+  <p><a href="#" target="_blank">Click here for our Spotify playlist 💖</a></p>
+
+  <h2>📸 Our Pictures</h2>
+  <img alt="Placeholder">
+  <img alt="Placeholder">
+  <img alt="Placeholder">
+</div>
+
+<script>
+  function checkLogin() {
+    const u = document.getElementById("username").value;
+    const p = document.getElementById("password").value;
+    if (u === "Has the wolf" && p === "Wolf") {
+      document.getElementById("login").classList.add("hidden");
+      document.getElementById("content").classList.remove("hidden");
+    } else {
+      document.getElementById("error").innerText = "Wrong username or password!";
+    }
+  }
+
+  // Birthday countdown
+  function updateCountdown() {
+    const birthday = new Date("October 11, 2025 00:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = birthday - now;
+
+    if (diff < 0) {
+      document.getElementById("countdown").innerText = "🎉 Happy Birthday! 🎉";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerText =
+      days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+  }
+
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
